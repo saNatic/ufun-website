@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
+
+
+public/videos/
+*.mp4
+*.mov
+*.avi
+*.wmv
+
+# 忽略视频文件
+/videos/**/*.mp4
+/videos/**/*.webm
+/videos/**/*.mov
+
+# 但保留目录结构
+!/videos/
+!/videos/**/
+!/videos/**/.gitkeeppublic/videos/
