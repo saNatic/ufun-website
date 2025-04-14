@@ -4,7 +4,7 @@
       <!-- 标题区域 -->
       <header class="text-center mb-20">
         <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          <span class="inline-block relative"> 热门玩法推荐 </span>
+          <span class="inline-block relative"> 热门玩法推荐111 </span>
         </h2>
         <p class="text-lg mt-6 max-w-2xl mx-auto">60+玩法任选 活动氛围高涨</p>
       </header>
