@@ -11,6 +11,9 @@ services:
     restart: always
     networks:
       - app-network
+    volumes:
+      - /www/docker-apps/ufun-site/data:/app/data
+      - /www/docker-apps/ufun-site/config/nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   app-network:
