@@ -1,0 +1,21 @@
+name: Sync to Huawei CodeArts Repo
+
+on:
+  push:
+    branches: [main] # 仅在 main 分支发生 push 时触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 获取所有历史记录
+
+      - name: Sync to CodeArts Repo
+        run: |
+          git remote add target https://${{ secrets.hid_nk3_y25vsaemjg4 }}:${{ secrets.mo5JsF7iMdcsHRb4QERXBGhC }}@${git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git#https://}
+          git push target main:main --force # 推送 main 分支，也可推送所有分支 tags: git push target --all --force; git push target --tags --force
+        env:
+          TARGET_REPO_URL: ${{ secrets.git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git }}
