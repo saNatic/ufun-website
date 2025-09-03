@@ -42,8 +42,8 @@ jobs:
       # 步骤 4: 添加华为云远程仓库并推送代码
       - name: Push to HuaweiCloud CodeArts
         run: |
-          # 添加华为云仓库为远程仓库，命名为 codearts
-          git remote add codearts ${{ secrets.CODEARTS_REPO_SSH_URL }}
+          # 添加华为云仓库为远程仓库，命名为 ufun-website
+          git remote add ufun-website $git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
           # 强制推送到华为云仓库的 main 分支
           # --force 选项确保两边的历史一致，请谨慎使用
-          git push --force codearts main:main
+          git push --force ufun-website main:main
