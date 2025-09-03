@@ -15,7 +15,5 @@ jobs:
 
       - name: Sync to CodeArts Repo
         run: |
-          git remote add target https://${{ secrets.hid_nk3_y25vsaemjg4 }}:${{ secrets.mo5JsF7iMdcsHRb4QERXBGhC }}@${git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git#https://}
-          git push target main:main --force # 推送 main 分支，也可推送所有分支 tags: git push target --all --force; git push target --tags --force
-        env:
-          TARGET_REPO_URL: ${{ secrets.git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git }}
+          git remote add codearts https://hid_nk3_y25vsaemjg4:mo5JsF7iMdcsHRb4QERXBGhC@${https://codehub-cn-south-1.devcloud.huaweicloud.com/4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git#https://}
+          git push codearts main:main
