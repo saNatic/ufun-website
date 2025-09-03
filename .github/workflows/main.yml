@@ -1,8 +1,8 @@
-name: 🚀 Sync to HuaweiCloud CodeArts (SSH)
+name: Sync to HuaweiCloud CodeArts (SSH)
 
 on:
   push:
-    branches: [main] # 只在推送到 main 分支时触发
+    branches: [main]
 
 jobs:
   sync:
@@ -18,19 +18,11 @@ jobs:
       # 步骤 2: 配置 SSH 密钥和 known_hosts (核心步骤)
       - name: Setup SSH Environment
         run: |
-          # 创建 .ssh 目录并设置正确权限
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-
-          # 将从 GitHub Secrets 中获取的私钥写入文件
           echo "${{ secrets.CODEARTS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          # 设置严格的权限，SSH 客户端要求私钥必须是 600 权限
           chmod 600 ~/.ssh/id_rsa
-
-          # 将华为云代码托管平台的主机指纹添加到 known_hosts
-          # 这可以避免首次连接时出现 "The authenticity of host can't be established" 的提示
           ssh-keyscan codehub-cn-south-1.devcloud.huaweicloud.com >> ~/.ssh/known_hosts
-          # 同样设置 known_hosts 文件的正确权限
           chmod 644 ~/.ssh/known_hosts
 
       # 步骤 3: 配置 Git 用户信息 (可选但推荐)
@@ -42,8 +34,5 @@ jobs:
       # 步骤 4: 添加华为云远程仓库并推送代码
       - name: Push to HuaweiCloud CodeArts
         run: |
-          # 添加华为云仓库为远程仓库，命名为 ufun-website
           git remote add ufun-website $git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
-          # 强制推送到华为云仓库的 main 分支
-          # --force 选项确保两边的历史一致，请谨慎使用
           git push --force ufun-website main:main
