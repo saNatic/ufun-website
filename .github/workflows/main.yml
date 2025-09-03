@@ -20,7 +20,55 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          echo "${{ secrets.CODEARTS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "-----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan codehub-cn-south-1.devcloud.huaweicloud.com >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
@@ -34,5 +82,5 @@ jobs:
       # 步骤 4: 添加华为云远程仓库并推送代码
       - name: Push to HuaweiCloud CodeArts
         run: |
-          git remote add ufun-website $git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
+          git remote add ufun-website git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
           git push --force ufun-website main:main
