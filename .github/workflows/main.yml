@@ -36,7 +36,3 @@ jobs:
         run: |
           git remote add ufun-website git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
           git push --force ufun-website main:main
-
-      - name: Test SSH Connection
-        run: |
-          ssh -T git@codehub-cn-south-1.devcloud.huaweicloud.com
