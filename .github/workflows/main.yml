@@ -1,11 +1,11 @@
-name: Sync to HuaweiCloud CodeArts (SSH)
+name: Sync to CNB
 
 on:
   push:
     branches: [main]
 
 jobs:
-  sync:
+  sync-to-cnb:
     runs-on: ubuntu-latest # 使用 GitHub 托管的 Ubuntu 虚拟机
 
     steps:
@@ -15,24 +15,16 @@ jobs:
         with:
           fetch-depth: 0 # 获取所有历史记录，这对 git push 是必须的
 
-      # 步骤 2: 配置 SSH 密钥和 known_hosts (核心步骤)
-      - name: Setup SSH Environment
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ secrets.CODEARTS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan codehub-cn-south-1.devcloud.huaweicloud.com >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
-      # 步骤 3: 配置 Git 用户信息 (可选但推荐)
+      # 步骤 2: 配置 Git 用户信息 (可选但推荐)
       - name: Setup Git Config
         run: |
           git config --global user.name "ufun"
           git config --global user.email "274409508@qq.com"
 
       # 步骤 4: 添加华为云远程仓库并推送代码
-      - name: Push to HuaweiCloud CodeArts
+      - name: Push to CNB
+        env:
+          CNB_REPO_URL: https://cnb:${{ secrets.CNB_ACCESS_TOKEN }}@cnb.cool/ufunnet/ufun-website.git
         run: |
-          git remote add ufun-website git@codehub-cn-south-1.devcloud.huaweicloud.com:4dbd6f39d1f0440e8544d9511d5ac29e/ufun-website.git
-          git push --force ufun-website main:main
+          git remote add cnb ${CNB_REPO_URL}
+          git push --force cnb main:main
