@@ -8,3 +8,11 @@ main:
         # 使用流水线输出你的构建配置数据
         - name: echo your build data
           script: echo ${CNB_BUILD_USER} 通过 ${CNB_BRANCH} 分支触发了 ${CNB_EVENT} 事件
+
+        - name: build_docker_image
+        script: |
+          echo "开始构建 Docker 镜像..."
+          docker build -t ufun-website:latest -f Dockerfile .
+          echo "Docker 镜像构建完成。"
+        
+        
