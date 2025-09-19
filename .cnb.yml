@@ -2,17 +2,11 @@
 main:
   # 触发事件为push事件
   push:
-    # 这里是阶段任务示例，可配置任意多个阶段，这里以一个阶段为例
-    - name: '测试'
+    - services:
+        - docker
       stages:
-        # 使用流水线输出你的构建配置数据
-        - name: echo your build data
-          script: echo ${CNB_BUILD_USER} 通过 ${CNB_BRANCH} 分支触发了 ${CNB_EVENT} 事件
-
-        - name: build_docker_image
-        script: |
-          echo "开始构建 Docker 镜像..."
-          docker build -t ufun-website:latest -f Dockerfile .
-          echo "Docker 镜像构建完成。"
-        
-        
+        # 同名镜像构建&推送
+        - name: docker build
+          script: docker build -t ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:latest .
+        - name: docker push
+          script: docker push ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:latest
