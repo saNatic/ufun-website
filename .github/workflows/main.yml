@@ -24,7 +24,7 @@ jobs:
       # 步骤 4: 添加华为云远程仓库并推送代码
       - name: Push to CNB
         env:
-          CNB_REPO_URL: https://cnb:${{ secrets.CNB_ACCESS_TOKEN }}@cnb.cool/ufunnet/shop_ufunet.git
+          CNB_REPO_URL: https://cnb:${{ secrets.CNB_ACCESS_TOKEN }}@cnb.cool/ufunnet/ufun-website.git
         run: |
           git remote add cnb ${CNB_REPO_URL}
           git push --force cnb main:main
